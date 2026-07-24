@@ -5,6 +5,7 @@ import '../mock/mock_data.dart';
 
 class ApiService {
   static final ApiService _instance = ApiService._internal();
+  static const String baseUrl = 'https://argus.mrantony.ru';
 
   factory ApiService() {
     return _instance;
