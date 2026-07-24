@@ -68,33 +68,25 @@ CustomTransitionPage<T> _buildSubPageTransition<T>(
 ) {
   return CustomTransitionPage<T>(
     key: state.pageKey,
-    child: child,
-    transitionDuration: const Duration(milliseconds: 280),
-    reverseTransitionDuration: const Duration(milliseconds: 240),
+    child: Container(
+      color: const Color(0xFF060E11),
+      child: child,
+    ),
+    transitionDuration: const Duration(milliseconds: 260),
+    reverseTransitionDuration: const Duration(milliseconds: 220),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       final slideAnimation = Tween<Offset>(
         begin: const Offset(1.0, 0.0),
         end: Offset.zero,
       ).animate(CurvedAnimation(
         parent: animation,
-        curve: Curves.easeOutCubic,
+        curve: Curves.fastOutSlowIn,
         reverseCurve: Curves.easeInCubic,
-      ));
-
-      final fadeAnimation = Tween<double>(
-        begin: 0.2,
-        end: 1.0,
-      ).animate(CurvedAnimation(
-        parent: animation,
-        curve: Curves.easeOut,
       ));
 
       return SlideTransition(
         position: slideAnimation,
-        child: FadeTransition(
-          opacity: fadeAnimation,
-          child: child,
-        ),
+        child: child,
       );
     },
   );
