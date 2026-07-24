@@ -401,24 +401,28 @@ class _MainLayoutState extends State<MainLayout> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: const Color(0xFF060E11),
-      body: Center(
-        child: Container(
-          width: canvasWidth,
-          height: double.infinity,
-          decoration: const BoxDecoration(
-            color: Color(0xFF060E11),
-            gradient: LinearGradient(
-              begin: Alignment(0.0, 1.0),
-              end: Alignment(0.0, -0.1),
-              colors: [
-                Color(0x476EAF91),
-                Colors.transparent,
-              ],
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        color: const Color(0xFF060E11),
+        child: Center(
+          child: Container(
+            width: canvasWidth,
+            height: double.infinity,
+            decoration: const BoxDecoration(
+              color: Color(0xFF060E11),
+              gradient: LinearGradient(
+                begin: Alignment(0.0, 1.0),
+                end: Alignment(0.0, -0.1),
+                colors: [
+                  Color(0x476EAF91),
+                  Colors.transparent,
+                ],
+              ),
             ),
-          ),
-          child: Stack(
-            clipBehavior: Clip.none,
-            children: [
+            child: Stack(
+              clipBehavior: Clip.none,
+              children: [
               // Main content
               Positioned.fill(
                 bottom: s(96) + bottomPadding,
@@ -539,7 +543,8 @@ class _MainLayoutState extends State<MainLayout> {
           ),
         ),
       ),
-    );
+    ),
+  );
   }
 
   Widget _buildStatusBar(double Function(double) s) {
