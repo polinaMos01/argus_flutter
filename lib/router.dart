@@ -81,9 +81,20 @@ CustomTransitionPage<T> _buildSubPageTransition<T>(
         reverseCurve: Curves.easeInCubic,
       ));
 
+      final fadeAnimation = Tween<double>(
+        begin: 0.2,
+        end: 1.0,
+      ).animate(CurvedAnimation(
+        parent: animation,
+        curve: Curves.easeOut,
+      ));
+
       return SlideTransition(
         position: slideAnimation,
-        child: child,
+        child: FadeTransition(
+          opacity: fadeAnimation,
+          child: child,
+        ),
       );
     },
   );

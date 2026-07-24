@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../widgets/app_button.dart';
+import '../../widgets/data_exposure_block.dart';
 
 class PhoneCheckResultScreen extends StatelessWidget {
   final String phone;
@@ -106,6 +107,14 @@ class PhoneCheckResultScreen extends StatelessWidget {
                   context.pop();
                 },
               ),
+              SizedBox(height: 32 * s),
+
+              // Block: Что знают о вас мошенники (Data Exposure)
+              const DataExposureBlock(
+                showTopCard: false,
+                customHeader: 'Что знают о вас мошенники',
+              ),
+
               SizedBox(height: 120 * s),
             ],
           ),
