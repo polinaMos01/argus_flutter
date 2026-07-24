@@ -45,7 +45,7 @@ import 'screens/notifications/notifications_screen.dart';
 import 'screens/security/security_score_screen.dart';
 import 'screens/profile/security_screen.dart';
 
-CustomTransitionPage<T> _buildPageTransition<T>(
+CustomTransitionPage<T> _buildTabTransition<T>(
   BuildContext context,
   GoRouterState state,
   Widget child,
@@ -53,14 +53,36 @@ CustomTransitionPage<T> _buildPageTransition<T>(
   return CustomTransitionPage<T>(
     key: state.pageKey,
     child: child,
-    transitionDuration: const Duration(milliseconds: 200),
-    reverseTransitionDuration: const Duration(milliseconds: 180),
+    transitionDuration: Duration.zero,
+    reverseTransitionDuration: Duration.zero,
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      return FadeTransition(
-        opacity: CurvedAnimation(
-          parent: animation,
-          curve: Curves.easeInOut,
-        ),
+      return child;
+    },
+  );
+}
+
+CustomTransitionPage<T> _buildSubPageTransition<T>(
+  BuildContext context,
+  GoRouterState state,
+  Widget child,
+) {
+  return CustomTransitionPage<T>(
+    key: state.pageKey,
+    child: child,
+    transitionDuration: const Duration(milliseconds: 280),
+    reverseTransitionDuration: const Duration(milliseconds: 240),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      final slideAnimation = Tween<Offset>(
+        begin: const Offset(1.0, 0.0),
+        end: Offset.zero,
+      ).animate(CurvedAnimation(
+        parent: animation,
+        curve: Curves.easeOutCubic,
+        reverseCurve: Curves.easeInCubic,
+      ));
+
+      return SlideTransition(
+        position: slideAnimation,
         child: child,
       );
     },
@@ -72,29 +94,29 @@ final GoRouter appRouter = GoRouter(
   routes: [
     GoRoute(
       path: '/',
-      pageBuilder: (context, state) => _buildPageTransition(context, state, const SplashScreen()),
+      pageBuilder: (context, state) => _buildTabTransition(context, state, const SplashScreen()),
     ),
     GoRoute(
       path: '/welcome',
-      pageBuilder: (context, state) => _buildPageTransition(context, state, const WelcomeScreen()),
+      pageBuilder: (context, state) => _buildSubPageTransition(context, state, const WelcomeScreen()),
     ),
     GoRoute(
       path: '/login',
-      pageBuilder: (context, state) => _buildPageTransition(context, state, const LoginScreen()),
+      pageBuilder: (context, state) => _buildSubPageTransition(context, state, const LoginScreen()),
     ),
     GoRoute(
       path: '/register',
-      pageBuilder: (context, state) => _buildPageTransition(context, state, const RegisterScreen()),
+      pageBuilder: (context, state) => _buildSubPageTransition(context, state, const RegisterScreen()),
     ),
     GoRoute(
       path: '/restore',
-      pageBuilder: (context, state) => _buildPageTransition(context, state, const RestoreScreen()),
+      pageBuilder: (context, state) => _buildSubPageTransition(context, state, const RestoreScreen()),
     ),
     GoRoute(
       path: '/email-confirm',
       pageBuilder: (context, state) {
         final email = state.extra as String? ?? '';
-        return _buildPageTransition(context, state, EmailConfirmScreen(email: email));
+        return _buildSubPageTransition(context, state, EmailConfirmScreen(email: email));
       },
     ),
     ShellRoute(
@@ -107,101 +129,101 @@ final GoRouter appRouter = GoRouter(
       routes: [
         GoRoute(
           path: '/dashboard',
-          pageBuilder: (context, state) => _buildPageTransition(context, state, const DashboardScreen()),
+          pageBuilder: (context, state) => _buildTabTransition(context, state, const DashboardScreen()),
         ),
         GoRoute(
           path: '/checks',
-          pageBuilder: (context, state) => _buildPageTransition(context, state, const AllChecksScreen()),
+          pageBuilder: (context, state) => _buildTabTransition(context, state, const AllChecksScreen()),
         ),
         GoRoute(
           path: '/email-check',
-          pageBuilder: (context, state) => _buildPageTransition(context, state, const EmailCheckScreen()),
+          pageBuilder: (context, state) => _buildSubPageTransition(context, state, const EmailCheckScreen()),
         ),
         GoRoute(
           path: '/email-check-result',
           pageBuilder: (context, state) {
             final email = state.extra as String? ?? 'alex@example.com';
-            return _buildPageTransition(context, state, EmailCheckResultScreen(email: email));
+            return _buildSubPageTransition(context, state, EmailCheckResultScreen(email: email));
           },
         ),
         GoRoute(
           path: '/phone-check',
-          pageBuilder: (context, state) => _buildPageTransition(context, state, const PhoneCheckScreen()),
+          pageBuilder: (context, state) => _buildSubPageTransition(context, state, const PhoneCheckScreen()),
         ),
         GoRoute(
           path: '/phone-check-result',
           pageBuilder: (context, state) {
             final phone = state.extra as String? ?? '+7 999 123-45-67';
-            return _buildPageTransition(context, state, PhoneCheckResultScreen(phone: phone));
+            return _buildSubPageTransition(context, state, PhoneCheckResultScreen(phone: phone));
           },
         ),
         GoRoute(
           path: '/file-check',
-          pageBuilder: (context, state) => _buildPageTransition(context, state, const FileCheckScreen()),
+          pageBuilder: (context, state) => _buildSubPageTransition(context, state, const FileCheckScreen()),
         ),
         GoRoute(
           path: '/file-check-result',
           pageBuilder: (context, state) {
             final fileName = state.extra as String? ?? 'file.pdf';
-            return _buildPageTransition(context, state, FileCheckResultScreen(fileName: fileName));
+            return _buildSubPageTransition(context, state, FileCheckResultScreen(fileName: fileName));
           },
         ),
         GoRoute(
           path: '/link-check',
-          pageBuilder: (context, state) => _buildPageTransition(context, state, const LinkCheckScreen()),
+          pageBuilder: (context, state) => _buildSubPageTransition(context, state, const LinkCheckScreen()),
         ),
         GoRoute(
           path: '/link-check-result',
           pageBuilder: (context, state) {
             final link = state.extra as String? ?? 'https://example.com';
-            return _buildPageTransition(context, state, LinkCheckResultScreen(link: link));
+            return _buildSubPageTransition(context, state, LinkCheckResultScreen(link: link));
           },
         ),
         GoRoute(
           path: '/password-check',
-          pageBuilder: (context, state) => _buildPageTransition(context, state, const PasswordCheckScreen()),
+          pageBuilder: (context, state) => _buildSubPageTransition(context, state, const PasswordCheckScreen()),
         ),
         GoRoute(
           path: '/profile',
-          pageBuilder: (context, state) => _buildPageTransition(context, state, const ProfileSettingsScreen()),
+          pageBuilder: (context, state) => _buildTabTransition(context, state, const ProfileSettingsScreen()),
         ),
         GoRoute(
           path: '/profile/edit',
-          pageBuilder: (context, state) => _buildPageTransition(context, state, const EditProfileScreen()),
+          pageBuilder: (context, state) => _buildSubPageTransition(context, state, const EditProfileScreen()),
         ),
         GoRoute(
           path: '/profile/app-settings',
-          pageBuilder: (context, state) => _buildPageTransition(context, state, const AppSettingsScreen()),
+          pageBuilder: (context, state) => _buildSubPageTransition(context, state, const AppSettingsScreen()),
         ),
         GoRoute(
           path: '/profile/active-sessions',
-          pageBuilder: (context, state) => _buildPageTransition(context, state, const DevicesScreen()),
+          pageBuilder: (context, state) => _buildSubPageTransition(context, state, const DevicesScreen()),
         ),
         GoRoute(
           path: '/profile/change-password',
-          pageBuilder: (context, state) => _buildPageTransition(context, state, const ChangePasswordScreen()),
+          pageBuilder: (context, state) => _buildSubPageTransition(context, state, const ChangePasswordScreen()),
         ),
         GoRoute(
           path: '/profile/backup-codes',
-          pageBuilder: (context, state) => _buildPageTransition(context, state, const BackupCodesScreen()),
+          pageBuilder: (context, state) => _buildSubPageTransition(context, state, const BackupCodesScreen()),
         ),
         GoRoute(
           path: '/profile/payment-methods',
-          pageBuilder: (context, state) => _buildPageTransition(context, state, const PaymentMethodsScreen()),
+          pageBuilder: (context, state) => _buildSubPageTransition(context, state, const PaymentMethodsScreen()),
         ),
         GoRoute(
           path: '/profile/add-card',
-          pageBuilder: (context, state) => _buildPageTransition(context, state, const AddCardScreen()),
+          pageBuilder: (context, state) => _buildSubPageTransition(context, state, const AddCardScreen()),
         ),
         GoRoute(
           path: '/profile/payment-history',
-          pageBuilder: (context, state) => _buildPageTransition(context, state, const PaymentHistoryScreen()),
+          pageBuilder: (context, state) => _buildSubPageTransition(context, state, const PaymentHistoryScreen()),
         ),
         GoRoute(
           path: '/profile/payment-receipt',
           pageBuilder: (context, state) {
             final txn = state.extra as PaymentTransaction?;
-            return _buildPageTransition(
+            return _buildSubPageTransition(
               context,
               state,
               ReceiptDetailScreen(
@@ -216,26 +238,26 @@ final GoRouter appRouter = GoRouter(
         ),
         GoRoute(
           path: '/profile/support',
-          pageBuilder: (context, state) => _buildPageTransition(context, state, const SupportScreen()),
+          pageBuilder: (context, state) => _buildSubPageTransition(context, state, const SupportScreen()),
         ),
         GoRoute(
           path: '/profile/about',
-          pageBuilder: (context, state) => _buildPageTransition(context, state, const AboutAppScreen()),
+          pageBuilder: (context, state) => _buildSubPageTransition(context, state, const AboutAppScreen()),
         ),
         GoRoute(
           path: '/monitoring',
-          pageBuilder: (context, state) => _buildPageTransition(context, state, const DataExposureScreen()),
+          pageBuilder: (context, state) => _buildSubPageTransition(context, state, const DataExposureScreen()),
         ),
         GoRoute(
           path: '/threats',
-          pageBuilder: (context, state) => _buildPageTransition(context, state, const ThreatsListScreen()),
+          pageBuilder: (context, state) => _buildSubPageTransition(context, state, const ThreatsListScreen()),
         ),
         GoRoute(
           path: '/threat-detail',
           pageBuilder: (context, state) {
             final String? titleParam = state.uri.queryParameters['title'] ?? (state.extra is String ? state.extra as String : null);
             final ThreatItem? threat = state.extra is ThreatItem ? state.extra as ThreatItem : null;
-            return _buildPageTransition(
+            return _buildSubPageTransition(
               context,
               state,
               ThreatDetailScreen(threat: threat, titleParam: titleParam),
@@ -244,43 +266,43 @@ final GoRouter appRouter = GoRouter(
         ),
         GoRoute(
           path: '/advisor',
-          pageBuilder: (context, state) => _buildPageTransition(context, state, const CyberAdvisorScreen()),
+          pageBuilder: (context, state) => _buildSubPageTransition(context, state, const CyberAdvisorScreen()),
         ),
         GoRoute(
           path: '/password-center',
-          pageBuilder: (context, state) => _buildPageTransition(context, state, const PasswordCenterScreen()),
+          pageBuilder: (context, state) => _buildSubPageTransition(context, state, const PasswordCenterScreen()),
         ),
         GoRoute(
           path: '/password-strength',
-          pageBuilder: (context, state) => _buildPageTransition(context, state, const PasswordStrengthScreen()),
+          pageBuilder: (context, state) => _buildSubPageTransition(context, state, const PasswordStrengthScreen()),
         ),
         GoRoute(
           path: '/password-check',
-          pageBuilder: (context, state) => _buildPageTransition(context, state, const PasswordCheckScreen()),
+          pageBuilder: (context, state) => _buildSubPageTransition(context, state, const PasswordCheckScreen()),
         ),
         GoRoute(
           path: '/weekly-report',
-          pageBuilder: (context, state) => _buildPageTransition(context, state, const WeeklyReportScreen()),
+          pageBuilder: (context, state) => _buildSubPageTransition(context, state, const WeeklyReportScreen()),
         ),
         GoRoute(
           path: '/tariffs',
-          pageBuilder: (context, state) => _buildPageTransition(context, state, const TariffsScreen()),
+          pageBuilder: (context, state) => _buildSubPageTransition(context, state, const TariffsScreen()),
         ),
         GoRoute(
           path: '/notifications',
-          pageBuilder: (context, state) => _buildPageTransition(context, state, const AllNotificationsScreen()),
+          pageBuilder: (context, state) => _buildSubPageTransition(context, state, const AllNotificationsScreen()),
         ),
         GoRoute(
           path: '/notifications/settings',
-          pageBuilder: (context, state) => _buildPageTransition(context, state, const NotificationsScreen()),
+          pageBuilder: (context, state) => _buildSubPageTransition(context, state, const NotificationsScreen()),
         ),
         GoRoute(
           path: '/security-score',
-          pageBuilder: (context, state) => _buildPageTransition(context, state, const SecurityScoreScreen()),
+          pageBuilder: (context, state) => _buildTabTransition(context, state, const SecurityScoreScreen()),
         ),
         GoRoute(
           path: '/profile/security',
-          pageBuilder: (context, state) => _buildPageTransition(context, state, const SecurityScreen()),
+          pageBuilder: (context, state) => _buildSubPageTransition(context, state, const SecurityScreen()),
         ),
       ],
     ),
