@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../widgets/app_toast.dart';
+import '../../widgets/bouncy_button.dart';
 import '../auth/email_confirm_screen.dart';
 
 class EditProfileScreen extends StatefulWidget {
@@ -161,6 +162,48 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   ),
                 ),
               ),
+              SizedBox(height: 24 * s),
+
+              // Delete Account Button
+              BouncyButton(
+                onTap: () => _showDeleteAccountDialog(context, s),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(31 * s),
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 6.85, sigmaY: 6.85),
+                    child: Container(
+                      width: double.infinity,
+                      height: 56 * s,
+                      padding: EdgeInsets.symmetric(horizontal: 24 * s),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFFF4B4B).withOpacity(0.12),
+                        borderRadius: BorderRadius.circular(31 * s),
+                        border: Border.all(
+                          color: const Color(0xFFFF4B4B).withOpacity(0.40),
+                          width: 1.5,
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.delete_outline, color: const Color(0xFFFF4B4B), size: 20 * s),
+                          SizedBox(width: 8 * s),
+                          Text(
+                            'Удалить аккаунт',
+                            style: TextStyle(
+                              fontFamily: 'GoogleSans',
+                              color: const Color(0xFFFF4B4B),
+                              fontSize: 16 * s,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+
               SizedBox(height: 120 * s),
             ],
           ),
@@ -224,6 +267,72 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             )
           else if (isReadOnly)
             Icon(Icons.lock_outline, color: const Color(0xFFACACAC).withOpacity(0.4), size: 18 * s),
+        ],
+      ),
+    );
+  }
+
+  void _showDeleteAccountDialog(BuildContext context, double s) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        backgroundColor: const Color(0xFF0C141D),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20 * s),
+          side: BorderSide(color: const Color(0xFFFF4B4B).withOpacity(0.3), width: 1),
+        ),
+        title: Text(
+          'Удалить аккаунт?',
+          style: TextStyle(
+            fontFamily: 'GoogleSans',
+            color: Colors.white,
+            fontSize: 18 * s,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        content: Text(
+          'Все ваши данные, история проверок и настройки будут безвозвратно удалены из системы. Это действие нельзя отменить.',
+          style: TextStyle(
+            fontFamily: 'GoogleSans',
+            color: Colors.white70,
+            fontSize: 14 * s,
+            height: 1.4,
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: Text(
+              'Отмена',
+              style: TextStyle(
+                fontFamily: 'GoogleSans',
+                color: Colors.white54,
+                fontSize: 14 * s,
+              ),
+            ),
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFFFF4B4B),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10 * s),
+              ),
+            ),
+            onPressed: () {
+              Navigator.pop(ctx);
+              showAppToast(context, 'Аккаунт успешно удалён');
+              context.go('/welcome');
+            },
+            child: Text(
+              'Удалить',
+              style: TextStyle(
+                fontFamily: 'GoogleSans',
+                color: Colors.white,
+                fontSize: 14 * s,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
         ],
       ),
     );
