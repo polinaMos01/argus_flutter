@@ -11,10 +11,15 @@ void main() {
   runApp(const ArgusApp());
 }
 
-class NoScrollbarBehavior extends ScrollBehavior {
+class SmoothBouncingScrollBehavior extends ScrollBehavior {
   @override
   Widget buildScrollbar(BuildContext context, Widget child, ScrollableDetails details) {
     return child;
+  }
+
+  @override
+  ScrollPhysics getScrollPhysics(BuildContext context) {
+    return const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics());
   }
 }
 
@@ -27,7 +32,7 @@ class ArgusApp extends StatelessWidget {
       title: 'ARGUS',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.darkTheme,
-      scrollBehavior: NoScrollbarBehavior(),
+      scrollBehavior: SmoothBouncingScrollBehavior(),
       routerConfig: appRouter,
       builder: (context, child) {
         return Container(

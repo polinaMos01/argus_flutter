@@ -22,7 +22,7 @@ class PhoneCheckResultScreen extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 24 * s),
           child: Column(
             children: [
-              SizedBox(height: 96 * s), // Spacing for MainLayout header
+              SizedBox(height: 126 * s), // Spacing for MainLayout header
               Container(
                 width: double.infinity,
                 padding: EdgeInsets.all(24 * s),

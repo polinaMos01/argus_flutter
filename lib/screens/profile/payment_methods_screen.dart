@@ -224,7 +224,7 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 96 * s), // MainLayout header padding
+              SizedBox(height: 126 * s), // MainLayout header padding
 
               Text(
                 'Сохранённые карты',

@@ -50,7 +50,7 @@ class _SupportScreenState extends State<SupportScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 96 * s), // MainLayout header offset
+              SizedBox(height: 126 * s), // MainLayout header offset
 
               // Top Hero Card: Нужна помощь? (Figma Node 165-1796)
               Container(

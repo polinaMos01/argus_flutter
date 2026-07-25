@@ -414,7 +414,7 @@ class _TariffsScreenState extends State<TariffsScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 96 * s), // MainLayout top header space
+              SizedBox(height: 126 * s), // MainLayout top header space
 
               // Top Active Card: Ваш тариф (Matching Figma screenshot 1-to-1)
               Container(

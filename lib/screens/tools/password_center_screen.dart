@@ -61,7 +61,7 @@ class _PasswordCenterScreenState extends State<PasswordCenterScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 96 * s), // Header offset + top spacing
+              SizedBox(height: 126 * s), // Header offset + top spacing
 
               // Top Generator Card
               Container(

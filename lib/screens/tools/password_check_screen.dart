@@ -36,7 +36,7 @@ class _PasswordCheckScreenState extends State<PasswordCheckScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 96 * s), // 114px header height + 48px exact Figma margin
+              SizedBox(height: 126 * s), // 114px header height + 48px exact Figma margin
 
               // Top Instruction & Input Box (Figma Screenshot 2 - Node 277-2072)
               Container(

@@ -154,7 +154,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 96 * s), // MainLayout header offset
+              SizedBox(height: 126 * s), // MainLayout header offset
 
               // Section 1: Что отправлять
               Text(

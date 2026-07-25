@@ -47,7 +47,7 @@ class _SecurityScoreScreenState extends State<SecurityScoreScreen> with SingleTi
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 96 * s), // MainLayout header offset + 48px margin
+              SizedBox(height: 126 * s), // MainLayout header offset + 48px margin
 
               // HERO CARD (Top Gauge & Score) - Figma 114-1702
               Container(

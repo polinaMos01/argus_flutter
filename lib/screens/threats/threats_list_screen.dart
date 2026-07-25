@@ -19,7 +19,7 @@ class ThreatsListScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 96 * s), // MainLayout header offset + 48px margin
+              SizedBox(height: 126 * s), // MainLayout header offset + 48px margin
 
               // SECTION 1: Сегодня (Figma Node 115-2132)
               Text(

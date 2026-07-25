@@ -34,7 +34,7 @@ class _PhoneCheckScreenState extends State<PhoneCheckScreen> {
       body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 96 * s),
+            SizedBox(height: 126 * s),
             if (_checkState == CheckState.loading)
               Expanded(
                 child: CheckLoadingView(

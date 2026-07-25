@@ -93,7 +93,7 @@ class _AllNotificationsScreenState extends State<AllNotificationsScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 96 * s), // MainLayout header padding
+              SizedBox(height: 126 * s), // MainLayout header padding
 
               // Top Action Row: Header Settings Icon Link
               Row(

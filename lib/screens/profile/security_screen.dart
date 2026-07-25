@@ -27,7 +27,7 @@ class _SecurityScreenState extends State<SecurityScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 96 * s), // MainLayout header padding
+              SizedBox(height: 126 * s), // MainLayout header padding
 
               // Top Status Card: Аккаунт защищён (Figma Node 131-1327)
               ClipRRect(

@@ -33,7 +33,7 @@ class _PasswordCheckScreenState extends State<PasswordCheckScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 96 * s), // Spacing for MainLayout header
+              SizedBox(height: 126 * s), // Spacing for MainLayout header
               
               // Input Card
               ClipRRect(

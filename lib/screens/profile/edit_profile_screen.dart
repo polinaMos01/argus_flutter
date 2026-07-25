@@ -50,7 +50,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 96 * s), // MainLayout header offset
+              SizedBox(height: 126 * s), // MainLayout header offset
 
               Text(
                 'Личные данные',
