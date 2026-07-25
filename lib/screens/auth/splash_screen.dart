@@ -15,7 +15,11 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
   late AnimationController _pulseController;
   late AnimationController _introController;
   late Animation<double> _shieldOpacity;
+  late Animation<double> _shieldScale;
   late Animation<double> _logoOpacity;
+  late Animation<double> _logoScale;
+  late Animation<Offset> _subtextOffset;
+  late Animation<double> _subtextOpacity;
   late Animation<double> _loadingProgress;
   late Animation<double> _loadingOpacity;
   late Animation<double> _buttonOpacity;
@@ -25,14 +29,30 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
     super.initState();
     _pulseController = AnimationController(vsync: this, duration: const Duration(seconds: 3))..repeat(reverse: true);
     
-    _introController = AnimationController(vsync: this, duration: const Duration(milliseconds: 4500));
+    _introController = AnimationController(vsync: this, duration: const Duration(milliseconds: 3800));
     
     _shieldOpacity = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _introController, curve: const Interval(0.0, 0.15, curve: Curves.easeIn)),
+      CurvedAnimation(parent: _introController, curve: const Interval(0.0, 0.25, curve: Curves.easeOut)),
+    );
+
+    _shieldScale = Tween<double>(begin: 0.3, end: 1.0).animate(
+      CurvedAnimation(parent: _introController, curve: const Interval(0.0, 0.35, curve: Curves.easeOutBack)),
     );
     
     _logoOpacity = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _introController, curve: const Interval(0.15, 0.3, curve: Curves.easeIn)),
+      CurvedAnimation(parent: _introController, curve: const Interval(0.20, 0.50, curve: Curves.easeOut)),
+    );
+
+    _logoScale = Tween<double>(begin: 0.30, end: 1.0).animate(
+      CurvedAnimation(parent: _introController, curve: const Interval(0.20, 0.55, curve: Curves.easeOutBack)),
+    );
+
+    _subtextOffset = Tween<Offset>(begin: const Offset(0.0, 0.3), end: Offset.zero).animate(
+      CurvedAnimation(parent: _introController, curve: const Interval(0.40, 0.65, curve: Curves.easeOutCubic)),
+    );
+
+    _subtextOpacity = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(parent: _introController, curve: const Interval(0.40, 0.65, curve: Curves.easeOut)),
     );
     
     _loadingProgress = Tween<double>(begin: 0.0, end: 1.0).animate(
@@ -46,7 +66,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
     ]).animate(_introController);
     
     _buttonOpacity = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _introController, curve: const Interval(0.9, 1.0, curve: Curves.easeIn)),
+      CurvedAnimation(parent: _introController, curve: const Interval(0.88, 1.0, curve: Curves.easeOut)),
     );
 
     _introController.forward();
@@ -86,55 +106,58 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
                 
                 // Shield + Circles
                 AnimatedBuilder(
-                  animation: _shieldOpacity,
+                  animation: _introController,
                   builder: (context, child) {
-                    return Opacity(
-                      opacity: _shieldOpacity.value,
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          AnimatedBuilder(
-                            animation: _pulseController,
-                            builder: (context, child) {
-                              return CustomPaint(
-                                size: const Size(421, 421),
-                                painter: CirclesPainter(
-                                  progress: _pulseController.value,
-                                  baseColor: AppColors.colorGreenLight.withValues(alpha: 0.15),
-                                ),
-                              );
-                            },
-                          ),
-                          AnimatedBuilder(
-                            animation: _pulseController,
-                            builder: (context, child) {
-                              return Transform.scale(
-                                scale: 0.95 + (_pulseController.value * 0.05),
-                                child: child,
-                              );
-                            },
-                            child: SizedBox(
-                              width: 122,
-                              height: 105,
-                              child: Stack(
-                                clipBehavior: Clip.hardEdge,
-                                children: [
-                                  Positioned(
-                                    top: -65.6,
-                                    left: 0,
-                                    right: 0,
-                                    child: Image.asset(
-                                      'assets/images/shield.png',
-                                      width: 122,
-                                      height: 244,
-                                      fit: BoxFit.fill,
-                                    ),
+                    return Transform.scale(
+                      scale: _shieldScale.value,
+                      child: Opacity(
+                        opacity: _shieldOpacity.value,
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            AnimatedBuilder(
+                              animation: _pulseController,
+                              builder: (context, child) {
+                                return CustomPaint(
+                                  size: const Size(421, 421),
+                                  painter: CirclesPainter(
+                                    progress: _pulseController.value,
+                                    baseColor: AppColors.colorGreenLight.withValues(alpha: 0.15),
                                   ),
-                                ],
+                                );
+                              },
+                            ),
+                            AnimatedBuilder(
+                              animation: _pulseController,
+                              builder: (context, child) {
+                                return Transform.scale(
+                                  scale: 0.95 + (_pulseController.value * 0.05),
+                                  child: child,
+                                );
+                              },
+                              child: SizedBox(
+                                width: 122,
+                                height: 105,
+                                child: Stack(
+                                  clipBehavior: Clip.hardEdge,
+                                  children: [
+                                    Positioned(
+                                      top: -65.6,
+                                      left: 0,
+                                      right: 0,
+                                      child: Image.asset(
+                                        'assets/images/shield.png',
+                                        width: 122,
+                                        height: 244,
+                                        fit: BoxFit.fill,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     );
                   },
@@ -142,31 +165,39 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
                 
                 const SizedBox(height: 60),
                 
-                // Logo & Text
+                // Logo & Text with WOW Scale and Slide Entrance
                 AnimatedBuilder(
-                  animation: _logoOpacity,
+                  animation: _introController,
                   builder: (context, child) {
-                    return Opacity(
-                      opacity: _logoOpacity.value,
-                      child: child,
+                    return Column(
+                      children: [
+                        Transform.scale(
+                          scale: _logoScale.value,
+                          child: Opacity(
+                            opacity: _logoOpacity.value,
+                            child: SvgPicture.asset('assets/images/node_84_3328.svg', width: 260),
+                          ),
+                        ),
+                        const SizedBox(height: 24),
+                        SlideTransition(
+                          position: _subtextOffset,
+                          child: Opacity(
+                            opacity: _subtextOpacity.value,
+                            child: const Text(
+                              'Ваша безопасность.\nНаша миссия.',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: AppColors.textSecondary,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                                height: 1.4,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     );
                   },
-                  child: Column(
-                    children: [
-                      SvgPicture.asset('assets/images/node_84_3328.svg', width: 260),
-                      const SizedBox(height: 24),
-                      const Text(
-                        'Ваша безопасность.\nНаша миссия.',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: AppColors.textSecondary,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                          height: 1.4,
-                        ),
-                      ),
-                    ],
-                  ),
                 ),
                 
                 const Spacer(flex: 4),
