@@ -16,7 +16,7 @@ class WeeklyReportScreen extends StatelessWidget {
 
     showModalBottomSheet(
       context: context,
-      backgroundColor: Colors.transparent,
+      backgroundColor: const Color(0xFF060E11),
       isScrollControlled: true,
       builder: (modalContext) {
         return ClipRRect(
@@ -167,7 +167,7 @@ class WeeklyReportScreen extends StatelessWidget {
     final double s = canvasWidth / 393.0;
 
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      backgroundColor: const Color(0xFF060E11),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 24 * s),

@@ -59,9 +59,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
     double s(double value) => value * (canvasWidth / 393);
 
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      backgroundColor: const Color(0xFF060E11),
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: const Color(0xFF060E11),
         elevation: 0,
         title: const Text(
           'Мой профиль',

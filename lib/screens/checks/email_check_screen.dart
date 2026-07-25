@@ -30,7 +30,7 @@ class _EmailCheckScreenState extends State<EmailCheckScreen> {
     final double s = canvasWidth / 393.0;
     
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      backgroundColor: const Color(0xFF060E11),
       body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

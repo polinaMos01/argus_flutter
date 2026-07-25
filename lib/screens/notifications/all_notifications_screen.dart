@@ -86,7 +86,7 @@ class _AllNotificationsScreenState extends State<AllNotificationsScreen> {
     }).toList();
 
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      backgroundColor: const Color(0xFF060E11),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 24 * s),

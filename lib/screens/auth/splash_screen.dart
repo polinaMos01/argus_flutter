@@ -238,7 +238,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
                   opacity: _loadingOpacity.value,
                   child: LinearProgressIndicator(
                     value: _loadingProgress.value,
-                    backgroundColor: Colors.transparent,
+                    backgroundColor: const Color(0xFF060E11),
                     valueColor: AlwaysStoppedAnimation<Color>(AppColors.colorGreen),
                     minHeight: 2.0,
                   ),

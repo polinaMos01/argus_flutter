@@ -72,15 +72,15 @@ CustomTransitionPage<T> _buildSubPageTransition<T>(
       color: const Color(0xFF060E11),
       child: child,
     ),
-    transitionDuration: const Duration(milliseconds: 260),
-    reverseTransitionDuration: const Duration(milliseconds: 220),
+    transitionDuration: const Duration(milliseconds: 380),
+    reverseTransitionDuration: const Duration(milliseconds: 320),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       final slideAnimation = Tween<Offset>(
         begin: const Offset(1.0, 0.0),
         end: Offset.zero,
       ).animate(CurvedAnimation(
         parent: animation,
-        curve: Curves.fastOutSlowIn,
+        curve: Curves.easeInOutCubic,
         reverseCurve: Curves.easeInCubic,
       ));
 

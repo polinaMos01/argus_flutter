@@ -26,7 +26,7 @@ class _AppSettingsScreenState extends State<AppSettingsScreen> {
 
     showModalBottomSheet(
       context: context,
-      backgroundColor: Colors.transparent,
+      backgroundColor: const Color(0xFF060E11),
       builder: (modalContext) {
         return ClipRRect(
           borderRadius: BorderRadius.vertical(top: Radius.circular(20 * s)),
@@ -114,7 +114,7 @@ class _AppSettingsScreenState extends State<AppSettingsScreen> {
     final double s = canvasWidth / 393.0;
 
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      backgroundColor: const Color(0xFF060E11),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 24 * s),

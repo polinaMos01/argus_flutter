@@ -28,7 +28,7 @@ class ReceiptDetailScreen extends StatelessWidget {
     final statusColor = isSuccess ? const Color(0xFF6EAF91) : const Color(0xFFFF4B4B);
 
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      backgroundColor: const Color(0xFF060E11),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 24 * s),

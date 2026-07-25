@@ -38,7 +38,7 @@ class _FileCheckResultScreenState extends State<FileCheckResultScreen> {
         : '89 антивирусных движков не обнаружили угроз';
 
     return Scaffold(
-      backgroundColor: Colors.transparent, // Handled by MainLayout
+      backgroundColor: const Color(0xFF060E11), // Handled by MainLayout
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 24 * s),

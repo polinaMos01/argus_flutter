@@ -46,7 +46,7 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
 
     showModalBottomSheet(
       context: context,
-      backgroundColor: Colors.transparent,
+      backgroundColor: const Color(0xFF060E11),
       isScrollControlled: true,
       builder: (ctx) => BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
@@ -217,7 +217,7 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
     final double s = canvasWidth / 393.0;
 
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      backgroundColor: const Color(0xFF060E11),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 24 * s),

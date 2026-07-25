@@ -37,7 +37,7 @@ class _CyberAdvisorScreenState extends State<CyberAdvisorScreen> {
 
     showModalBottomSheet(
       context: context,
-      backgroundColor: Colors.transparent,
+      backgroundColor: const Color(0xFF060E11),
       builder: (context) {
         return Container(
           decoration: BoxDecoration(
@@ -325,7 +325,7 @@ class _CyberAdvisorScreenState extends State<CyberAdvisorScreen> {
     double s(double v) => v * sVal;
 
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      backgroundColor: const Color(0xFF060E11),
       body: Column(
         children: [
           Expanded(
