@@ -21,7 +21,7 @@ class AllChecksScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: s(126)), // Top padding matching MainLayout header
+                SizedBox(height: s(96)), // Top padding matching MainLayout header
 
                     // Big Container for all checks
                     ClipRRect(

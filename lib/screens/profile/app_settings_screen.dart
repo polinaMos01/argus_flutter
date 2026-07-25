@@ -121,7 +121,7 @@ class _AppSettingsScreenState extends State<AppSettingsScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 126 * s), // MainLayout top header padding
+              SizedBox(height: 96 * s), // MainLayout top header padding
 
               // SECTION 1: Тема & Автопроверка
               Container(

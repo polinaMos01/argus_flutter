@@ -35,7 +35,7 @@ class ReceiptDetailScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 126 * s), // MainLayout header offset
+              SizedBox(height: 96 * s), // MainLayout header offset
 
               // Receipt Glass Card (Matching Argus Cyber Theme)
               Container(

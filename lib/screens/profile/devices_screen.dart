@@ -75,7 +75,7 @@ class _DevicesScreenState extends State<DevicesScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 126 * s), // MainLayout top header padding
+              SizedBox(height: 96 * s), // MainLayout top header padding
 
               // 1. Header: Это устройство
               Text(

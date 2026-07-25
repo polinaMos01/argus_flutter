@@ -95,7 +95,7 @@ class _PasswordStrengthScreenState extends State<PasswordStrengthScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 126 * s), // 114px header height + 48px exact Figma margin
+              SizedBox(height: 96 * s), // 114px header height + 48px exact Figma margin
 
               // Top Input Field
               Container(

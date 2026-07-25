@@ -333,7 +333,7 @@ class _CyberAdvisorScreenState extends State<CyberAdvisorScreen> {
               padding: EdgeInsets.symmetric(horizontal: s(24)),
               child: Column(
                 children: [
-                  SizedBox(height: s(126)), // Header padding (exact 48px margin)
+                  SizedBox(height: s(96)), // Header padding (exact 48px margin)
 
                   // Chat Messages List
                   Expanded(

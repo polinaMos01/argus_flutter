@@ -20,7 +20,7 @@ class AboutAppScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 126 * s), // MainLayout header space
+              SizedBox(height: 96 * s), // MainLayout header space
 
               // Logo & App Name Hero
               Container(

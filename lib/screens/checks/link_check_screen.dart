@@ -32,7 +32,7 @@ class _LinkCheckScreenState extends State<LinkCheckScreen> {
       body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 126 * s),
+            SizedBox(height: 96 * s),
             if (_checkState == CheckState.loading)
               Expanded(
                 child: CheckLoadingView(

@@ -27,7 +27,7 @@ class _ActiveSessionsScreenState extends State<ActiveSessionsScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 126 * s), // MainLayout header offset
+              SizedBox(height: 96 * s), // MainLayout header offset
 
               // Section 1: Это устройство
               Text(

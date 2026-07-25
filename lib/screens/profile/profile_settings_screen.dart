@@ -20,7 +20,7 @@ class ProfileSettingsScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 126 * s), // Space for MainLayout header (110) + offset
+              SizedBox(height: 96 * s), // Space for MainLayout header (110) + offset
               
               // User Info Block (Matching Screenshot 5)
               Column(

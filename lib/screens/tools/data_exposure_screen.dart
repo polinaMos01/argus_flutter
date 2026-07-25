@@ -18,7 +18,7 @@ class DataExposureScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 126 * s), // Spacing below MainLayout header
+              SizedBox(height: 96 * s), // Spacing below MainLayout header
 
               const DataExposureBlock(
                 showTopCard: true,

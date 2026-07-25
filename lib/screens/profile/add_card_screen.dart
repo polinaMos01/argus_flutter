@@ -41,7 +41,7 @@ class _AddCardScreenState extends State<AddCardScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 126 * s), // MainLayout header padding
+              SizedBox(height: 96 * s), // MainLayout header padding
 
               // Interactive Credit Card Graphic Preview (Figma Node 159-1825)
               AnimatedBuilder(
