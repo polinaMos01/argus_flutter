@@ -89,10 +89,11 @@ CustomTransitionPage<T> _buildSubPageTransition<T>(
       color: const Color(0xFF060E11),
       child: child,
     ),
-    transitionDuration: const Duration(milliseconds: 480),
-    reverseTransitionDuration: const Duration(milliseconds: 380),
+    transitionDuration: const Duration(milliseconds: 460),
+    reverseTransitionDuration: const Duration(milliseconds: 360),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      final slideAnimation = Tween<Offset>(
+      // Primary slide-in from right (1.0 -> 0.0)
+      final primarySlide = Tween<Offset>(
         begin: const Offset(1.0, 0.0),
         end: Offset.zero,
       ).animate(CurvedAnimation(
@@ -101,19 +102,32 @@ CustomTransitionPage<T> _buildSubPageTransition<T>(
         reverseCurve: Curves.easeInOutCubic,
       ));
 
-      final fadeAnimation = Tween<double>(
-        begin: 0.0,
+      final primaryFade = Tween<double>(
+        begin: 0.3,
         end: 1.0,
       ).animate(CurvedAnimation(
         parent: animation,
-        curve: const Interval(0.0, 0.5, curve: Curves.easeOut),
+        curve: const Interval(0.0, 0.6, curve: Curves.easeOut),
+      ));
+
+      // Secondary parallax slide-out to left (0.0 -> -0.25) when another subpage opens on top
+      final secondarySlide = Tween<Offset>(
+        begin: Offset.zero,
+        end: const Offset(-0.25, 0.0),
+      ).animate(CurvedAnimation(
+        parent: secondaryAnimation,
+        curve: Curves.fastOutSlowIn,
+        reverseCurve: Curves.easeInOutCubic,
       ));
 
       return SlideTransition(
-        position: slideAnimation,
-        child: FadeTransition(
-          opacity: fadeAnimation,
-          child: child,
+        position: secondarySlide,
+        child: SlideTransition(
+          position: primarySlide,
+          child: FadeTransition(
+            opacity: primaryFade,
+            child: child,
+          ),
         ),
       );
     },
