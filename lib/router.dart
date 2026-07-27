@@ -54,15 +54,25 @@ CustomTransitionPage<T> _buildTabTransition<T>(
   return CustomTransitionPage<T>(
     key: state.pageKey,
     child: child,
-    transitionDuration: const Duration(milliseconds: 180),
-    reverseTransitionDuration: const Duration(milliseconds: 180),
+    transitionDuration: const Duration(milliseconds: 260),
+    reverseTransitionDuration: const Duration(milliseconds: 200),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      return FadeTransition(
-        opacity: CurvedAnimation(
+      final fadeAnimation = CurvedAnimation(
+        parent: animation,
+        curve: Curves.easeInOutCubic,
+      );
+      final scaleAnimation = Tween<double>(begin: 0.98, end: 1.0).animate(
+        CurvedAnimation(
           parent: animation,
-          curve: Curves.easeOut,
+          curve: Curves.easeOutCubic,
         ),
-        child: child,
+      );
+      return FadeTransition(
+        opacity: fadeAnimation,
+        child: ScaleTransition(
+          scale: scaleAnimation,
+          child: child,
+        ),
       );
     },
   );
@@ -79,25 +89,32 @@ CustomTransitionPage<T> _buildSubPageTransition<T>(
       color: const Color(0xFF060E11),
       child: child,
     ),
-    transitionDuration: const Duration(milliseconds: 360),
-    reverseTransitionDuration: const Duration(milliseconds: 300),
+    transitionDuration: const Duration(milliseconds: 480),
+    reverseTransitionDuration: const Duration(milliseconds: 380),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      final curvedAnimation = CurvedAnimation(
+      final slideAnimation = Tween<Offset>(
+        begin: const Offset(1.0, 0.0),
+        end: Offset.zero,
+      ).animate(CurvedAnimation(
         parent: animation,
-        curve: const Cubic(0.22, 1.0, 0.36, 1.0), // Kaspersky / iOS Smooth Spring Curve
-        reverseCurve: Curves.easeInCubic,
-      );
-      final curvedSecondary = CurvedAnimation(
-        parent: secondaryAnimation,
-        curve: const Cubic(0.22, 1.0, 0.36, 1.0),
-        reverseCurve: Curves.easeInCubic,
-      );
+        curve: Curves.fastOutSlowIn,
+        reverseCurve: Curves.easeInOutCubic,
+      ));
 
-      return CupertinoPageTransition(
-        primaryRouteAnimation: curvedAnimation,
-        secondaryRouteAnimation: curvedSecondary,
-        linearTransition: false,
-        child: child,
+      final fadeAnimation = Tween<double>(
+        begin: 0.0,
+        end: 1.0,
+      ).animate(CurvedAnimation(
+        parent: animation,
+        curve: const Interval(0.0, 0.5, curve: Curves.easeOut),
+      ));
+
+      return SlideTransition(
+        position: slideAnimation,
+        child: FadeTransition(
+          opacity: fadeAnimation,
+          child: child,
+        ),
       );
     },
   );
