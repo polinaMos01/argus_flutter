@@ -93,7 +93,7 @@ class LinkCheckResultScreen extends StatelessWidget {
                     SizedBox(height: 16 * s),
                     _buildInfoRow('Тип ссылки', 'URL', s),
                     SizedBox(height: 16 * s),
-                    _buildInfoRow('Риск фишинга', 'низкий', s, isWarning: false),
+                    _buildInfoRow('Риск мошенничества', 'низкий', s, isWarning: false),
                   ],
                 ),
               ),

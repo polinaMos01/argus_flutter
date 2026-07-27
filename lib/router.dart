@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 
 import 'models/threat_item.dart';
@@ -53,10 +54,16 @@ CustomTransitionPage<T> _buildTabTransition<T>(
   return CustomTransitionPage<T>(
     key: state.pageKey,
     child: child,
-    transitionDuration: Duration.zero,
-    reverseTransitionDuration: Duration.zero,
+    transitionDuration: const Duration(milliseconds: 180),
+    reverseTransitionDuration: const Duration(milliseconds: 180),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      return child;
+      return FadeTransition(
+        opacity: CurvedAnimation(
+          parent: animation,
+          curve: Curves.easeOut,
+        ),
+        child: child,
+      );
     },
   );
 }
@@ -72,20 +79,24 @@ CustomTransitionPage<T> _buildSubPageTransition<T>(
       color: const Color(0xFF060E11),
       child: child,
     ),
-    transitionDuration: const Duration(milliseconds: 380),
-    reverseTransitionDuration: const Duration(milliseconds: 320),
+    transitionDuration: const Duration(milliseconds: 360),
+    reverseTransitionDuration: const Duration(milliseconds: 300),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      final slideAnimation = Tween<Offset>(
-        begin: const Offset(1.0, 0.0),
-        end: Offset.zero,
-      ).animate(CurvedAnimation(
+      final curvedAnimation = CurvedAnimation(
         parent: animation,
-        curve: Curves.easeInOutCubic,
+        curve: const Cubic(0.22, 1.0, 0.36, 1.0), // Kaspersky / iOS Smooth Spring Curve
         reverseCurve: Curves.easeInCubic,
-      ));
+      );
+      final curvedSecondary = CurvedAnimation(
+        parent: secondaryAnimation,
+        curve: const Cubic(0.22, 1.0, 0.36, 1.0),
+        reverseCurve: Curves.easeInCubic,
+      );
 
-      return SlideTransition(
-        position: slideAnimation,
+      return CupertinoPageTransition(
+        primaryRouteAnimation: curvedAnimation,
+        secondaryRouteAnimation: curvedSecondary,
+        linearTransition: false,
         child: child,
       );
     },

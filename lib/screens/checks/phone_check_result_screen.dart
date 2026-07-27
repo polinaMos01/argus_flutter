@@ -96,7 +96,7 @@ class PhoneCheckResultScreen extends StatelessWidget {
                     SizedBox(height: 16 * s),
                     _buildInfoRow('Тип данных', 'Телефон, ФИО, Адрес', s),
                     SizedBox(height: 16 * s),
-                    _buildInfoRow('Риск фишинга', 'высокий', s, isWarning: true),
+                    _buildInfoRow('Риск мошенничества', 'высокий', s, isWarning: true),
                   ],
                 ),
               ),
