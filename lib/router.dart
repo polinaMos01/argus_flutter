@@ -54,26 +54,10 @@ CustomTransitionPage<T> _buildTabTransition<T>(
   return CustomTransitionPage<T>(
     key: state.pageKey,
     child: child,
-    transitionDuration: const Duration(milliseconds: 260),
-    reverseTransitionDuration: const Duration(milliseconds: 200),
+    transitionDuration: Duration.zero,
+    reverseTransitionDuration: Duration.zero,
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      final fadeAnimation = CurvedAnimation(
-        parent: animation,
-        curve: Curves.easeInOutCubic,
-      );
-      final scaleAnimation = Tween<double>(begin: 0.98, end: 1.0).animate(
-        CurvedAnimation(
-          parent: animation,
-          curve: Curves.easeOutCubic,
-        ),
-      );
-      return FadeTransition(
-        opacity: fadeAnimation,
-        child: ScaleTransition(
-          scale: scaleAnimation,
-          child: child,
-        ),
-      );
+      return child;
     },
   );
 }
