@@ -106,7 +106,7 @@ class _FileCheckResultScreenState extends State<FileCheckResultScreen> {
                     SizedBox(height: 16 * s),
                     _buildInfoRow('Проверено', '1 мин назад', s),
                     SizedBox(height: 16 * s),
-                    _buildInfoRow('Движков', '89', s),
+                    _buildInfoRow('Проверка', 'ClamAV, MalwareBazaar', s),
                     if (_hasThreat) ...[
                       SizedBox(height: 16 * s),
                       _buildInfoRow('Статус', '3 угрозы найдено', s, isWarning: true),

@@ -88,9 +88,19 @@ class _FileCheckScreenState extends State<FileCheckScreen> {
                           GestureDetector(
                             onTap: () async {
                               FilePickerResult? result = await FilePicker.platform.pickFiles();
-                              if (result != null) {
+                              if (result != null && result.files.isNotEmpty) {
+                                final picked = result.files.single;
+                                if (picked.size > 25 * 1024 * 1024) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text('Максимальный размер файла — 25 МБ'),
+                                      backgroundColor: Colors.redAccent,
+                                    ),
+                                  );
+                                  return;
+                                }
                                 setState(() {
-                                  _selectedFileName = result.files.single.name;
+                                  _selectedFileName = picked.name;
                                 });
                               }
                             },

@@ -132,8 +132,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       if (val == null || val.trim().isEmpty) {
                         return 'Поле обязательно для заполнения';
                       }
-                      if (val.length < 6) {
-                        return 'Пароль должен быть не менее 6 символов';
+                      if (val.length < 8 || val.length > 128) {
+                        return 'Пароль должен содержать от 8 до 128 символов';
                       }
                       return null;
                     },

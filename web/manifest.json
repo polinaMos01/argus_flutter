@@ -1,11 +1,11 @@
 {
-    "name": "argus_flutter",
-    "short_name": "argus_flutter",
+    "name": "ARGUS Cyber Security",
+    "short_name": "ARGUS",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#060E11",
+    "theme_color": "#060E11",
+    "description": "Кибербезопасность и защита персональных данных",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
