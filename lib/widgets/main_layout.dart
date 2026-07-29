@@ -364,7 +364,6 @@ class _MainLayoutState extends State<MainLayout> {
       case '/advisor': return 'Cyber Advisor';
       case '/password-center': return 'Password Center';
       case '/password-strength': return 'Сила пароля';
-      case '/password-check': return 'Утечки данных';
       case '/weekly-report': return 'Weekly Report';
       case '/tariffs': return 'Подписка и тарифы';
       case '/premium': return 'Подписка и тарифы';
@@ -380,19 +379,10 @@ class _MainLayoutState extends State<MainLayout> {
     return true;
   }
 
-  int? _getActiveIndex() {
-    if (widget.currentPath == '/dashboard') return 0;
-    if (widget.currentPath == '/checks' || widget.currentPath?.startsWith('/email-check') == true || widget.currentPath?.startsWith('/phone-check') == true || widget.currentPath?.startsWith('/file-check') == true || widget.currentPath?.startsWith('/link-check') == true || widget.currentPath?.startsWith('/password-check') == true) return 1;
-    if (widget.currentPath == '/security-score') return 2;
-    if (widget.currentPath == '/profile' || widget.currentPath?.startsWith('/profile/') == true || widget.currentPath == '/tariffs' || widget.currentPath == '/payment-methods' || widget.currentPath == '/payment-history') return 3;
-    return null;
-  }
-
   @override
   Widget build(BuildContext context) {
     final title = _getTitle();
     final showBackButton = _showBackButton();
-    final activeIndex = _getActiveIndex();
     final screenWidth = MediaQuery.of(context).size.width;
     final canvasWidth = screenWidth > 430 ? 430.0 : screenWidth;
     double s(double value) => value * (canvasWidth / 393);
